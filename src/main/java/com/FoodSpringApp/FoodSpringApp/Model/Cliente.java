@@ -1,33 +1,22 @@
 package com.FoodSpringApp.FoodSpringApp.Model;
  
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-/**
- id	int(11) autoincremento
-nombre	varchar(100)
-apellidos	varchar(100)
-email	varchar(100)
-telefono	int(15)
-direccion	varchar(255)
- */
-
 @Entity 
 public class Cliente {
-    
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;  // es auntoincrento pero  tiene getter
+    private int id;
  
-    private String nombre;  //	varchar(100)
-    private String apellidos;   //	varchar(100)
-    private String email;	//varchar(100)
-    private int telefono; 	//int(15)
-    private String direccion;	 //varchar
+    private String nombre;
+    private String apellidos;
+    private String email;
+    private int telefono;
+    private String direccion;
 
     
     public int getId() {
