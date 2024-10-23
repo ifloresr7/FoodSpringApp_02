@@ -1,4 +1,4 @@
-package com.FoodSpringApp.FoodSpringApp.controller;
+package com.FoodSpringApp.FoodSpringApp.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController; 
