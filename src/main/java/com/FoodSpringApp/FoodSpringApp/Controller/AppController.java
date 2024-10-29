@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.FoodSpringApp.FoodSpringApp.Service.AlquilerService;
+
 @Controller
 public class AppController {
     @GetMapping("/")
@@ -32,6 +34,7 @@ public class AppController {
     
     @GetMapping("/alquileres")
     public String alquileresPage(Model model) {
+        model.addAttribute("alquileres", AlquilerService.obtenerTodosAlquileres());
         model.addAttribute("title", "Alquileres");
         model.addAttribute("description", "Aquí puedes ver todos los alquileres.");
         model.addAttribute("currentPage", "alquileres");

@@ -11,11 +11,9 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class Alquiler {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id; // es auntoincrento pero  tiene getter no setter
-
+    private int id; 
     private int clienteId;
     private int vehiculoId;  
     @Temporal(TemporalType.DATE)
@@ -24,8 +22,6 @@ public class Alquiler {
     private Date fechaInicio;
     private double precio;
 
-
-    
     public int getId() {
         return id;
     }
@@ -59,11 +55,4 @@ public class Alquiler {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-
-
-        
-     
-    
-
-    
 }
