@@ -1,13 +1,18 @@
-package com.FoodSpringApp.FoodSpringApp.Controller;
+package com.FoodSpringApp.FoodSpringApp.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.FoodSpringApp.FoodSpringApp.Service.AlquilerService;
+import com.FoodSpringApp.FoodSpringApp.service.AlquilerService;
 
 @Controller
 public class AppController {
+
+    @Autowired
+    private AlquilerService alquilerService;
+
     @GetMapping("/")
     public String homePage(Model model) {
         model.addAttribute("title", "Página de Inicio");
@@ -34,7 +39,7 @@ public class AppController {
     
     @GetMapping("/alquileres")
     public String alquileresPage(Model model) {
-        model.addAttribute("alquileres", AlquilerService.obtenerTodosAlquileres());
+        model.addAttribute("alquileres", alquilerService.obtenerTodosAlquileres());
         model.addAttribute("title", "Alquileres");
         model.addAttribute("description", "Aquí puedes ver todos los alquileres.");
         model.addAttribute("currentPage", "alquileres");

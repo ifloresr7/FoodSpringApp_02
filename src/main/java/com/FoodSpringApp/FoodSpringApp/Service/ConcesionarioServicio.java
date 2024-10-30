@@ -1,5 +1,5 @@
     
-package com.FoodSpringApp.FoodSpringApp.Service;
+package com.FoodSpringApp.FoodSpringApp.service;
 
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.FoodSpringApp.FoodSpringApp.Controller;
+package com.FoodSpringApp.FoodSpringApp.controller;
 
 public class ClienteController {
     
