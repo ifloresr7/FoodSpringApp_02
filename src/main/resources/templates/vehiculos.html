@@ -7,10 +7,34 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}" />
 </head>
 <body>
+   
     <div th:replace="~{fragments/header}"></div> 
     <main class="content">
         <h1 th:text="${title}">Título de la Página</h1>
         <p th:text="${description}">Descripción de la página.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Color ID</th>
+                    <th>Marca</th>
+                    <th>Puertas</th>
+                    <th>Autonomia</th>
+                    <th>Potencia</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="vehiculo : ${alquileres}">
+                    <td th:text="${vehiculo.id}"></td>
+                    <td th:text="${vehiculo.color}"></td>
+                    <td th:text="${vehiculo.marca}"></td>
+                    <td th:text="${vehiculo.puertas}"></td>
+                    <td th:text="${vehiculo.autonomia_km}"></td>
+                    <td th:text="${vehiculo.potencia_cv}"></td>
+                </tr>
+            </tbody>
+        </table>
     </main>
     <div th:replace="~{fragments/footer}"></div>
 </body>

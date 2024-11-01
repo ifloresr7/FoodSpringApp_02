@@ -13,6 +13,7 @@
 	<artifactId>FoodSpringApp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>FoodSpringApp</name>
+
 	<description>Alquilate un coche.</description>
 	<url />
 	<licenses>
