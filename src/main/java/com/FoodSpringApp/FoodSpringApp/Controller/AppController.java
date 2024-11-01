@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.FoodSpringApp.FoodSpringApp.service.AlquilerService;
 import com.FoodSpringApp.FoodSpringApp.service.ClienteService;
+import com.FoodSpringApp.FoodSpringApp.service.VehiculoService;
 
 @Controller
 public class AppController {
@@ -15,7 +16,8 @@ public class AppController {
     private AlquilerService alquilerService;
     @Autowired
     private ClienteService clienteService;
-
+    @Autowired
+    private VehiculoService vehiculoService;
 
     @GetMapping("/")
     public String homePage(Model model) {
@@ -27,6 +29,7 @@ public class AppController {
     
     @GetMapping("/vehiculos")
     public String vehiculosPage(Model model) {
+        model.addAttribute("vehiculos", vehiculoService.obtenerTodosVehiculos());
         model.addAttribute("title", "Vehículos");
         model.addAttribute("description", "Aquí puedes ver todos los vehículos.");
         model.addAttribute("currentPage", "vehiculos");

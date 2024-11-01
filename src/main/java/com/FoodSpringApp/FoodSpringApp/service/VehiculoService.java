@@ -14,7 +14,7 @@ public class VehiculoService{
     @Autowired
     private VehiculoRepository  vehiculoRepository;
 
-    public List<Vehiculo> obtenerTodosAlquileres() {
+    public List<Vehiculo> obtenerTodosVehiculos() {
         return vehiculoRepository.findAll();
     }
 }

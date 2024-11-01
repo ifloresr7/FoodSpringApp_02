@@ -12,7 +12,7 @@
     <main class="content">
         <h1 th:text="${title}">Título de la Página</h1>
         <p th:text="${description}">Descripción de la página.</p>
-
+        <button>Crear nuevo</button>
         <table>
             <thead>
                 <tr>
@@ -22,16 +22,21 @@
                     <th>Puertas</th>
                     <th>Autonomia</th>
                     <th>Potencia</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="vehiculo : ${alquileres}">
+                <tr th:each="vehiculo : ${vehiculos}">
                     <td th:text="${vehiculo.id}"></td>
                     <td th:text="${vehiculo.color}"></td>
                     <td th:text="${vehiculo.marca}"></td>
                     <td th:text="${vehiculo.puertas}"></td>
                     <td th:text="${vehiculo.autonomia_km}"></td>
                     <td th:text="${vehiculo.potencia_cv}"></td>
+                    <td>
+                        <button th:id="'update_' + ${vehiculo.id}">Editar</button>
+                        <button th:id="'delete_' + ${vehiculo.id}">Eliminar</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
