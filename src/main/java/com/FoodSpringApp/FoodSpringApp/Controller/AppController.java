@@ -6,12 +6,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.FoodSpringApp.FoodSpringApp.service.AlquilerService;
+import com.FoodSpringApp.FoodSpringApp.service.ClienteService;
 
 @Controller
 public class AppController {
 
     @Autowired
     private AlquilerService alquilerService;
+    @Autowired
+    private ClienteService clienteService;
+
 
     @GetMapping("/")
     public String homePage(Model model) {
@@ -31,6 +35,7 @@ public class AppController {
     
     @GetMapping("/clientes")
     public String clientesPage(Model model) {
+        model.addAttribute("clientes", clienteService.obtenerTodosClientes());
         model.addAttribute("title", "Clientes");
         model.addAttribute("description", "Aquí puedes ver todos los clientes.");
         model.addAttribute("currentPage", "clientes");

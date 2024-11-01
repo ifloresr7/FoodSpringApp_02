@@ -7,32 +7,32 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}" />
 </head>
 <body>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Cliente ID</th>
-                <th>Vehículo ID</th>
-                <th>Fecha de Inicio</th>
-                <th>Fecha de Fin</th>
-                <th>Precio</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="alquiler : ${alquileres}">
-                <td th:text="${alquiler.id}"></td>
-                <td th:text="${alquiler.clienteId}"></td>
-                <td th:text="${alquiler.vehiculoId}"></td>
-                <td th:text="${alquiler.fechaInicio}"></td>
-                <td th:text="${alquiler.fechaFin}"></td>
-                <td th:text="${alquiler.precio}"></td>
-            </tr>
-        </tbody>
-    </table>
     <div th:replace="~{fragments/header}"></div> 
     <main class="content">
         <h1 th:text="${title}">Título de la Página</h1>
         <p th:text="${description}">Descripción de la página.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente ID</th>
+                    <th>Vehículo ID</th>
+                    <th>Fecha de Inicio</th>
+                    <th>Fecha de Fin</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="alquiler : ${alquileres}">
+                    <td th:text="${alquiler.id}"></td>
+                    <td th:text="${alquiler.clienteId}"></td>
+                    <td th:text="${alquiler.vehiculoId}"></td>
+                    <td th:text="${alquiler.fechaInicio}"></td>
+                    <td th:text="${alquiler.fechaFin}"></td>
+                    <td th:text="${alquiler.precio}"></td>
+                </tr>
+            </tbody>
+        </table>
     </main>
     <div th:replace="~{fragments/footer}"></div>
 </body>
