@@ -11,7 +11,28 @@
     <main class="content">
         <h1 th:text="${title}">Título de la Página</h1>
         <p th:text="${description}">Descripción de la página.</p>
-        <p>hay que usar param prueba!!!!</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>nombre</th>
+                    <th>apellidos</th>
+                    <th>email</th>
+                    <th>telefono</th>
+                    <th>direccion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="cliente : ${clientes}">
+                    <td th:text="${cliente.id}"></td>
+                    <td th:text="${cliente.nombre}"></td>
+                    <td th:text="${cliente.apellidos}"></td>
+                    <td th:text="${cliente.email}"></td>
+                    <td th:text="${cliente.telefono}"></td>
+                    <td th:text="${cliente.direccion}"></td>
+                </tr>
+            </tbody>
+        </table>
     </main>
     <div th:replace="~{fragments/footer}"></div>
 </body>
