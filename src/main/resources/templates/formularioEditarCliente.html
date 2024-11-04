@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Cliente</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+    <div th:replace="~{fragments/header}"></div>
+    <main class="content">
+        <h1>Editar Cliente</h1>
+        <!-- Configuramos la acción del formulario para actualizar el cliente existente -->
+        <form th:action="@{/clientes/actualizar}" th:object="${cliente}" method="post">
+            <input type="hidden" th:field="*{id}" /> <!-- Campo oculto para el ID del cliente -->
+            <label>Nombre: <input type="text" th:field="*{nombre}" /></label><br>
+            <label>Apellidos: <input type="text" th:field="*{apellidos}" /></label><br>
+            <label>Email: <input type="email" th:field="*{email}" /></label><br>
+            <label>Teléfono: <input type="text" th:field="*{telefono}" /></label><br>
+            <label>Dirección: <input type="text" th:field="*{direccion}" /></label><br>
+            <button type="submit">Guardar Cambios</button>
+        </form>
+    </main>
+    <div th:replace="~{fragments/footer}"></div>
+</body>
+</html>
