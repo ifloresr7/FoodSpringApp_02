@@ -1,11 +1,16 @@
-package com.FoodSpringApp.FoodSpringApp.Controller;
+package com.FoodSpringApp.FoodSpringApp.controller;
 
-import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import com.FoodSpringApp.FoodSpringApp.Model.Cliente;
-import com.FoodSpringApp.FoodSpringApp.Service.ClienteService;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.FoodSpringApp.FoodSpringApp.model.Cliente;
+import com.FoodSpringApp.FoodSpringApp.service.ClienteService;
 
 @Controller
 @RequestMapping("/clientes")

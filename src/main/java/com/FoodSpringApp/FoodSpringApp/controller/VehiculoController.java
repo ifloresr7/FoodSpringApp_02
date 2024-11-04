@@ -54,5 +54,5 @@ public class VehiculoController {
     public String eliminarVehiculo(@PathVariable int id) {
         vehiculoService.deleteById(id);
         return "redirect:/vehiculos";  
-
+    }
 }

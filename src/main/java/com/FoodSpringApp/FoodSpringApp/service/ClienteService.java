@@ -1,10 +1,12 @@
-package com.FoodSpringApp.FoodSpringApp.Service;
+package com.FoodSpringApp.FoodSpringApp.service;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.List;
-import com.FoodSpringApp.FoodSpringApp.Model.Cliente;
-import com.FoodSpringApp.FoodSpringApp.Repository.ClienteRepository;
+
+import com.FoodSpringApp.FoodSpringApp.model.Cliente;
+import com.FoodSpringApp.FoodSpringApp.repository.ClienteRepository;
 
 @Service
 public class ClienteService {
