@@ -12,7 +12,8 @@
     <main class="content">
         <h1 th:text="${title}">Título de la Página</h1>
         <p th:text="${description}">Descripción de la página.</p>
-        <button>Crear nuevo</button>
+         
+        <button onclick="window.location.href='/vehiculos/nuevo'">Añadir Nuevo Vehiculo</button>
         <table>
             <thead>
                 <tr>
@@ -33,14 +34,37 @@
                     <td th:text="${vehiculo.puertas}"></td>
                     <td th:text="${vehiculo.autonomia_km}"></td>
                     <td th:text="${vehiculo.potencia_cv}"></td>
-                    <td>
+                    <!--td>
                         <button th:id="'update_' + ${vehiculo.id}">Editar</button>
                         <button th:id="'delete_' + ${vehiculo.id}">Eliminar</button>
+                    </td -->
+
+                    <td>
+                        <a th:href="@{/vehiculos/editar/{id}(id=${vehiculo.id})}">Editar</a>
+                        <button th:onclick="'eliminarVehiculo(' + ${vehiculo.id} + ')'" type="button">Eliminar</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </main>
+
+
+    <script>
+        function eliminarVehiculo(vehiculoId) {
+            if (confirm('¿Estás seguro de que deseas eliminar este vehiculo?')) {
+                fetch(`/api/vehiculos/${vehiculoId}`, {
+                    method: 'DELETE'
+                }).then(response => {
+                    if (response.ok) {
+                        alert('vehiculo eliminado correctamente');
+                        location.reload();  
+                    } else {
+                        alert('Error al eliminar el cliente');
+                    }
+                });
+            }
+        }
+    </script>
     <div th:replace="~{fragments/footer}"></div>
 </body>
 </html>

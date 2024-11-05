@@ -15,25 +15,21 @@ import com.FoodSpringApp.FoodSpringApp.service.VehiculoService;
 @Controller
 @RequestMapping("/vehiculos")
 public class VehiculoController {
-    
 
-
-     @Autowired
+    @Autowired
     private VehiculoService vehiculoService;
-
      
     @GetMapping("/nuevo")
     public String mostrarFormularioCreacion(Model model) {
         model.addAttribute("vehiculo", new Vehiculo());
         return "formularioCrearVehiculo";  
     }
- 
+
     @PostMapping("/guardar")
     public String guardarVehiculo(@ModelAttribute Vehiculo vehiculo) {
         vehiculoService.save(vehiculo);  
         return "redirect:/vehiculos";  
     }
-
     
     @GetMapping("/editar/{id}")
     public String mostrarFormularioEdicion(@PathVariable int id, Model model) {

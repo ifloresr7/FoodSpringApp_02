@@ -2,21 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Añadir Vehiculo</title>
+    <title>Editar Cliente</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}" />
 </head>
 <body>
     <div th:replace="~{fragments/header}"></div>
     <main class="content">
-        <h1>Añadir NuevoVehiculo</h1>
-        <!-- Actualizamos la acción del formulario para que coincida con el controlador -->
-        <form th:action="@{/vehiculos/guardar}" th:object="${vehiculo}" method="post">
+        <h1>Editar Vehiculo</h1>
+         
+        <form th:action="@{/vehiculos/editar}" th:object="${vehiculo}" method="post">
             <label>Color: <input type="text" th:field="*{color}" /></label><br>
             <label>marca: <input type="text" th:field="*{marca}" /></label><br>
             <label>puertas: <input type="puertas" th:field="*{puertas}" /></label><br>
             <label>autonomia_km: <input type="text" th:field="*{autonomia_km}" /></label><br>
             <label>potencia_cv: <input type="text" th:field="*{potencia_cv}" /></label><br>
-            <button type="submit">Guardar Vehiculo</button>
+            <button type="submit">Guardar Cambios</button>
         
         </form>
     </main>
