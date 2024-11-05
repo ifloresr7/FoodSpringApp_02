@@ -13,7 +13,7 @@ import com.FoodSpringApp.FoodSpringApp.model.Cliente;
 import com.FoodSpringApp.FoodSpringApp.service.ClienteService;
 
 @Controller
-@RequestMapping("/clientes")
+@RequestMapping("/api/clientes")
 public class ClienteController {
 
     @Autowired

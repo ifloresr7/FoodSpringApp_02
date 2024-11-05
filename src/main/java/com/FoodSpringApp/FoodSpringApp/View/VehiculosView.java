@@ -1,4 +1,4 @@
-package com.FoodSpringApp.FoodSpringApp.View;
+package com.FoodSpringApp.FoodSpringApp.view;
 
 public class VehiculosView {
 
