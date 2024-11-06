@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title th:text="${title}">Gestión de Clientes</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <script th:src="@{/js/clientes.js}" defer></script>
 </head>
 <body>
     <!-- Header -->
@@ -12,7 +13,7 @@
     <!-- Contenido principal -->
     <main class="content">
         <h1 th:text="${title}">Clientes</h1>
-        <button onclick="abrirModal('nuevo')">Añadir Nuevo Cliente</button>
+        <button class="createClienteButton">Añadir Nuevo Cliente</button>
 
         <!-- Tabla de clientes -->
         <table>
@@ -32,100 +33,24 @@
         </table>
     </main>
 
-    <!-- Modal para Agregar/Editar Cliente -->
-    <div id="clienteModal" style="display:none;">
-        <div class="modal-content">
-            <span class="close" onclick="cerrarModal()">&times;</span>
-            <h2 id="modalTitle">Agregar Cliente</h2>
-            <form id="clienteForm">
-                <input type="hidden" id="clienteId" />
-                <label>Nombre: <input type="text" id="nombre" required /></label><br>
-                <label>Apellidos: <input type="text" id="apellidos" required /></label><br>
-                <label>Email: <input type="email" id="email" required /></label><br>
-                <label>Teléfono: <input type="text" id="telefono" required /></label><br>
-                <label>Dirección: <input type="text" id="direccion" required /></label><br>
-                <button type="button" onclick="guardarCliente()">Guardar</button>
-            </form>
-        </div>
-    </div>
+    <!-- DialogCliente -->
+    <dialog id="clienteModal">
+        <span class="closeButtonModal close">&times;</span>
+        <h2 id="modalTitle">Agregar / Actualiza a un cliente</h2>
+        <form id="clienteForm" type="put">
+            <input type="hidden" id="diClienteId" />
+            <label>Nombre: <input type="text" id="diNombre" required /></label><br>
+            <label>Apellidos: <input type="text" id="diApellidos" required /></label><br>
+            <label>Email: <input type="email" id="diEmail" required /></label><br>
+            <label>Teléfono: <input type="text" id="diTelefono" required /></label><br>
+            <label>Dirección: <input type="text" id="diDireccion" required /></label><br>
+            <button type="submit">Crea / Actualiza</button>
+            <button class="closeButtonModal">Cerrar</button>
+        </form>
+    </dialog>
 
     <!-- Script de gestión de clientes -->
     <script>
-        // Abrir el modal
-        function abrirModal(tipo, cliente = {}) {
-            document.getElementById("clienteModal").style.display = "block";
-            document.getElementById("clienteForm").reset();
-            document.getElementById("clienteId").value = cliente.id || "";
-            document.getElementById("nombre").value = cliente.nombre || "";
-            document.getElementById("apellidos").value = cliente.apellidos || "";
-            document.getElementById("email").value = cliente.email || "";
-            document.getElementById("telefono").value = cliente.telefono || "";
-            document.getElementById("direccion").value = cliente.direccion || "";
-            document.getElementById("modalTitle").innerText = tipo === 'nuevo' ? 'Agregar Cliente' : 'Editar Cliente';
-        }
-
-        // Cerrar el modal
-        function cerrarModal() {
-            document.getElementById("clienteModal").style.display = "none";
-        }
-
-        // Cargar clientes en la tabla
-        function cargarClientes() {
-            fetch('/api/clientes')
-                .then(response => response.json())
-                .then(clientes => {
-                    const tableBody = document.getElementById('clientesTable');
-                    tableBody.innerHTML = '';
-                    clientes.forEach(cliente => {
-                        const row = `<tr>
-                            <td>${cliente.id}</td>
-                            <td>${cliente.nombre} ${cliente.apellidos}</td>
-                            <td>${cliente.email}</td>
-                            <td>${cliente.telefono}</td>
-                            <td>${cliente.direccion}</td>
-                            <td>
-                                <button onclick="abrirModal('editar', ${JSON.stringify(cliente)})">Editar</button>
-                                <button onclick="eliminarCliente(${cliente.id})">Eliminar</button>
-                            </td>
-                        </tr>`;
-                        tableBody.insertAdjacentHTML('beforeend', row);
-                    });
-                });
-        }
-
-    function guardarCliente() {
-        const clienteId = document.getElementById("clienteId").value;
-        const cliente = {
-            nombre: document.getElementById("nombre").value,
-            apellidos: document.getElementById("apellidos").value,
-            email: document.getElementById("email").value,
-            telefono: document.getElementById("telefono").value,
-            direccion: document.getElementById("direccion").value
-        };
-    
-        const url = clienteId ? `/api/clientes/${clienteId}` : '/api/clientes';
-        const method = clienteId ? 'PUT' : 'POST';
-
-        fetch(url, {
-            method: method,
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(cliente)
-        }).then(response => {
-            if (response.ok) {
-                cerrarModal();
-                cargarClientes();
-            } else {
-                response.json().then(error => {
-                console.error("Error al actualizar el cliente:", error);
-                alert("Hubo un problema al actualizar el cliente. Verifica la consola para más detalles.");
-            });
-        }
-        }).catch(error => {
-            console.error("Error en la solicitud de actualización:", error);
-            alert("No se pudo completar la solicitud de actualización.");
-        });
-    }
-
         // Eliminar cliente
         function eliminarCliente(id) {
             if (confirm('¿Estás seguro de que deseas eliminar este cliente?')) {
@@ -133,9 +58,7 @@
                     .then(() => cargarClientes());
             }
         }
-
         // Cargar clientes cuando el DOM esté listo
-        document.addEventListener('DOMContentLoaded', cargarClientes);
     </script>
 
 

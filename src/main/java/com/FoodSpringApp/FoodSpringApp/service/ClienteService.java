@@ -46,5 +46,4 @@ public class ClienteService {
     public Cliente findById(int id) {
         return clienteRepository.findById(id).orElse(null);
     }
-    
 }
