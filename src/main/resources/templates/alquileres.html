@@ -5,6 +5,7 @@
     <title th:text="${title}">Título por Defecto</title>
     <meta name="description" th:content="${description}" />
     <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <script th:src="@{/js/alquileres.js}"></script>
 </head>
 <body>
     <div th:replace="~{fragments/header}"></div> 
@@ -20,20 +21,36 @@
                     <th>Fecha de Inicio</th>
                     <th>Fecha de Fin</th>
                     <th>Precio</th>
+                    <th>Actiones</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr th:each="alquiler : ${alquileres}">
+            <tbody id="alquileresTable">
+                <tr th:each="alquiler: ${alquileres}">
                     <td th:text="${alquiler.id}"></td>
                     <td th:text="${alquiler.clienteId}"></td>
                     <td th:text="${alquiler.vehiculoId}"></td>
                     <td th:text="${alquiler.fechaInicio}"></td>
                     <td th:text="${alquiler.fechaFin}"></td>
                     <td th:text="${alquiler.precio}"></td>
+                    <td>
+                        <button class="editButton">Editar</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
+        <div>
+            <button>Crear nuevo alquiler</button>
+        </div>
     </main>
+    <dialog id="AlquilerDialog">
+        <form id="formAlquiler">
+
+            <div>
+                <button type="submit">Crea / Actualiza</button>
+                <button class="closeButtonModal">Cerrar</button>
+            </div>
+        </form>
+    </dialog>
     <div th:replace="~{fragments/footer}"></div>
 </body>
 </html>
