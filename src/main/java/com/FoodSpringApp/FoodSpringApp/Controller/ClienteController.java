@@ -42,7 +42,7 @@ public class ClienteController {
     }
 
     // Eliminar un cliente y redirigir a la lista de clientes
-    @DeleteMapping("/api/clientes/eliminar/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<Void> eliminarCliente(@PathVariable int id) {
         clienteService.deleteById(id);
         return ResponseEntity.noContent().build();
