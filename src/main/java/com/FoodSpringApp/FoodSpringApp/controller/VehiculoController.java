@@ -13,7 +13,7 @@ import com.FoodSpringApp.FoodSpringApp.model.Vehiculo;
 import com.FoodSpringApp.FoodSpringApp.service.VehiculoService;
 
 @Controller
-@RequestMapping("/vehiculos")
+@RequestMapping("/api/vehiculos")
 public class VehiculoController {
 
     @Autowired
