@@ -3,9 +3,13 @@
 <head>
     
     <meta charset="UTF-8">
-    <title th:text="${title}">Gestión de Vehiculo/title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}" />
-    <script th:src="@{/js/vehiculos.js?v=1.1}" defer></script>
+ 
+   
+
+    <title th:text="${title}">Título por Defecto</title>
+    <meta name="description" th:content="${description}" />
+    <link rel="stylesheet" th:href="@{/css/styles.css(v=${version})}" />
+
 </head>
 <body>
    
