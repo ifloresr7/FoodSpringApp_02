@@ -187,3 +187,71 @@ dialog::backdrop {
     background: #8080802b;
     backdrop-filter: blur(3px);
 }
+
+/* Estilo básico de la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo para las celdas y las filas */
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #383838;
+}
+
+/* Fondo de las cabeceras */
+th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
+
+/* Estilo para las filas impares */
+tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+/* Efecto al pasar el ratón sobre las filas */
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Botones de acción */
+button {
+    padding: 6px 12px;
+    margin: 4px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Botón de editar */
+.editButton {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.editButton:hover {
+    background-color: #45a049;
+}
+
+/* Botón de eliminar */
+.deleteButton {
+    background-color: #f44336;
+    color: white;
+}
+
+.deleteButton:hover {
+    background-color: #da190b;
+}
+
+/* Estilo para las celdas de acción */
+td button {
+    padding: 6px 12px;
+    margin: 2px;
+}
