@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,13 +29,6 @@ public class ClienteController {
     return ResponseEntity.ok(clientes);
     }
 
-    // Eliminar un cliente y redirigir a la lista de clientes
-    @GetMapping("/eliminar/{id}")
-    public String eliminarCliente(@PathVariable int id) {
-        clienteService.deleteById(id);
-        return "redirect:/clientes"; // Redirige a la lista de clientes
-    }
-
     @PostMapping
     public ResponseEntity<Cliente> guardarCliente(@RequestBody Cliente cliente) {
     Cliente nuevoCliente = clienteService.save(cliente);
@@ -47,4 +41,11 @@ public class ClienteController {
     return clienteActualizado != null ? ResponseEntity.ok(clienteActualizado) : ResponseEntity.notFound().build();
     }
 
+    // Eliminar un cliente y redirigir a la lista de clientes
+    @DeleteMapping("/api/clientes/eliminar/{id}")
+    public ResponseEntity<Void> eliminarCliente(@PathVariable int id) {
+        clienteService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+    
 }

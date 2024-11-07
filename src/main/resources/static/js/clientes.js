@@ -107,16 +107,17 @@ document.getElementById('clienteForm').addEventListener('submit', function(e) {
 // Función para eliminar un cliente
 function eliminarCliente(id) {
     if (confirm('¿Estás seguro de que deseas eliminar este cliente?')) {
-        fetch(`/api/clientes/${id}`, {
+        fetch(`/api/clientes/eliminar/${id}`, {
             method: 'DELETE',
         })
         .then(() => {
             alert('Cliente eliminado correctamente');
-            cargarClientes();
+            cargarClientes(); // Refresca la lista de clientes
         })
         .catch(error => console.error('Error al eliminar el cliente:', error));
     }
 }
+
 
 // Cargar clientes al iniciar
 document.addEventListener('DOMContentLoaded', cargarClientes);
