@@ -1,12 +1,13 @@
 let vehiculosList;
- 
+
 const dialogVehiculo = document.getElementById('vehiculoModal');
 const diVehiculoId = document.getElementById('diVehiculoId');
+const diColor = document.getElementById('diColor'); // Agregado para el color
 const diMarca = document.getElementById('diMarca');
 const diPuertas = document.getElementById('diPuertas');
 const diAutonomia_km = document.getElementById('diAutonomia_km');
 const diPotencia_cv = document.getElementById('diPotencia_cv');
- 
+
 // Función para cargar vehiculos
 function cargarVehiculos() {
     fetch('/api/vehiculos')
@@ -16,12 +17,13 @@ function cargarVehiculos() {
             tableBody.innerHTML = '';
             vehiculosList = vehiculos;
             vehiculos.forEach(vehiculo => {
-                const row = `<tr data-id="${vehiculo.id}">                        
-                    <td th:text="${vehiculo.color}"></td>
-                    <td th:text="${vehiculo.marca}"></td>
-                    <td th:text="${vehiculo.puertas}"></td>
-                    <td th:text="${vehiculo.autonomia_km}"></td>
-                    <td th:text="${vehiculo.potencia_cv}"></td>
+                const row = `<tr data-id="${vehiculo.id}">
+                    <td>${vehiculo.id}</td>
+                    <td>${vehiculo.color}</td>
+                    <td>${vehiculo.marca}</td>
+                    <td>${vehiculo.puertas}</td>
+                    <td>${vehiculo.autonomia_km}</td>
+                    <td>${vehiculo.potencia_cv}</td>
                     <td>
                         <button class="editButton">Editar</button>
                         <button class="deleteButton">Eliminar</button>
@@ -33,7 +35,6 @@ function cargarVehiculos() {
         });
 }
 
-// Configura los botones de edición y eliminación
 function createFunctionalityButton() {
     document.querySelectorAll('.closeButtonModal').forEach(button => {
         button.addEventListener('click', (e) => {
@@ -72,13 +73,12 @@ function createFunctionalityButton() {
         diPuertas.value = "";
         diAutonomia_km.value = "";
         diPotencia_cv.value = "";
-
         dialogVehiculo.showModal();
     });
 }
 
 // Función para guardar o actualizar un vehiculo
-document.getElementById('vehciuloForm').addEventListener('submit', function(e) {
+document.getElementById('vehiculoForm').addEventListener('submit', function(e) { // Cambié vehciuloForm a vehiculoForm
     e.preventDefault();
     const vehiculoData = {
         id: diVehiculoId.value,
@@ -113,12 +113,11 @@ function eliminarVehiculo(id) {
         })
         .then(() => {
             alert('Vehiculo eliminado correctamente');
-
+            cargarVehiculos(); // Refresca la lista de vehiculos
         })
         .catch(error => console.error('Error al eliminar el vehiculo:', error));
     }
 }
-
 
 // Cargar Vehiculos al iniciar
 document.addEventListener('DOMContentLoaded', cargarVehiculos);
