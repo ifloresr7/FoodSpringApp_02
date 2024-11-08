@@ -132,6 +132,12 @@ footer span {
     cursor: pointer;
 }
 
+.createButton{
+    margin: auto;
+    display: flex;
+    background: #3086cc;
+    color: white;
+}
 
 dialog[open] {
     opacity: 1;
@@ -202,7 +208,7 @@ th, td {
 }
 
 th {
-    background-color: #4CAF50;
+    background-color: #515151;
     color: white;
     font-weight: bold;
 }
