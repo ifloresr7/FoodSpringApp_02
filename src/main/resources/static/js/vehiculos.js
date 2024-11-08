@@ -66,6 +66,7 @@ function createFunctionalityButton() {
         });
     });
 
+    document.querySelector('.createButton').addEventListener('click', function () {
         diVehiculoId.value = "";
         diColor.value = "";
         diMarca.value = "";
