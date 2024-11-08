@@ -113,7 +113,7 @@ function eliminarVehiculo(id) {
         })
         .then(() => {
             alert('Vehiculo eliminado correctamente');
-            cargarVehiculos(); // Refresca la lista de vehiculos
+
         })
         .catch(error => console.error('Error al eliminar el vehiculo:', error));
     }
