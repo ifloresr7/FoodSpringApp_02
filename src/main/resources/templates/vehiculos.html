@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>    
+<head>
     <meta charset="UTF-8">
     <title th:text="${title}">Título por Defecto</title>
     <meta name="description" th:content="${description}" />
     <link rel="stylesheet" th:href="@{/css/styles.css(v=${version})}" />
 </head>
 <body>
-   
     <div th:replace="~{fragments/header}"></div> 
     <main class="content">
         <h1 th:text="${title}">Título de la Página</h1>
         <p th:text="${description}">Descripción de la página.</p>
-         
         <button onclick="window.location.href='/vehiculos/nuevo'">Añadir Nuevo Vehiculo</button>
         <table>
             <thead>
@@ -33,9 +31,7 @@
                     <td th:text="${vehiculo.marca}"></td>
                     <td th:text="${vehiculo.puertas}"></td>
                     <td th:text="${vehiculo.autonomia_km}"></td>
-                    <td th:text="${vehiculo.potencia_cv}"></td>
-                    
-
+                    <td th:text="${vehiculo.potencia_cv}"></td>                  
                     <td>
                         <a th:href="@{/vehiculos/editar/{id}(id=${vehiculo.id})}">Editar</a>
                         <button th:onclick="'eliminarVehiculo(' + ${vehiculo.id} + ')'" type="button">Eliminar</button>
@@ -44,24 +40,82 @@
             </tbody>
         </table>
     </main>
-
     <!-- DialogVehiculo -->
-   <dialog id="vehiculoModal">
+    <dialog id="vehiculoModal">
         <span class="closeButtonModal close">&times;</span>
         <h2 id="modalTitle">Agregar / Actualiza a un vehiculo</h2>
         <form id="vehiculoForm" type="put">
             <input type="hidden" id="diVehiculoId" />
+            <label>Color: <input type="text" id="diColor" required /></label><br>
             <label>Marca: <input type="text" id="diMarca" required /></label><br>
             <label>Puertas: <input type="text" id="diPuertas" required /></label><br>
             <label>Automina(km): <input type="email" id="diAutonomia_km" required /></label><br>
             <label>Potencia(cv): <input type="text" id="diPotencia_cv" required /></label><br>
-            
             <button type="submit">Crea / Actualiza</button>
             <button class="closeButtonModal">Cerrar</button>
         </form>
     </dialog>
+    <!-- Script de gestión de vehiculos -->
+    <script>  
+        function cargarVehiculos() {
+            fetch('/api/vehiculos')
+                .then(response => response.json())
+                .then(vehiculos => {
+                    const tableBody = document.getElementById('vehiculosTable');
+                    tableBody.innerHTML = ''; // Vaciar la tabla antes de agregar nuevos datos
+                    vehiculos = vehiculos; // Actualizar la lista de vehiculos
+                    vehiculos.forEach(vehiculo => {
+                        const row = `<tr data-id="${vehiculo.id}">
+                            <td th:text="${vehiculo.id}"></td>
+                            <td th:text="${vehiculo.color}"></td>
+                            <td th:text="${vehiculo.marca}"></td>
+                            <td th:text="${vehiculo.puertas}"></td>
+                            <td th:text="${vehiculo.autonomia_km}"></td>
+                            <td th:text="${vehiculo.potencia_cv}"></td>
 
-
+                            <td>
+                                <button class="editButton">Editar</button>
+                                <button class="deleteButton">Eliminar</button>
+                            </td>
+                        </tr>`;
+                        tableBody.insertAdjacentHTML('beforeend', row);
+                    });
+                    createFunctionalityButton(); // Configurar botones nuevamente
+                })
+                .catch(error => console.error('Error al cargar vehiculos:', error));
+        }
+        // Editar vehiculos en la tabla
+        function editarVehiculos() {
+            fetch('/api/vehiculos')
+                .then(response => response.json())
+                .then(vehiculos => {
+                    const tableBody = document.getElementById('vehiculosTable');
+                    tableBody.innerHTML = '';
+                    vehiculos.forEach(vehiculo => {
+                        const row = `<tr>
+                         
+                            <td th:text="${vehiculo.color}"></td>
+                            <td th:text="${vehiculo.marca}"></td>
+                            <td th:text="${vehiculo.puertas}"></td>
+                            <td th:text="${vehiculo.autonomia_km}"></td>
+                            <td th:text="${vehiculo.potencia_cv}"></td>
+                            <td>
+                                <button onclick="abrirModal('editar', ${JSON.stringify(vehiculo)})">Editar</button>
+                                <button onclick="eliminarVehiculo(${vehiculo.id})">Eliminar</button>
+                            </td>
+                        </tr>`;
+                        tableBody.insertAdjacentHTML('beforeend', row);
+                    });
+                });
+        }
+        // Eliminar vehiculo
+        function eliminarVehiculo(id) {
+            if (confirm('¿Estás seguro de que deseas eliminar este vehiculo?')) {
+                fetch(`/api/vehiculos/eliminar/${id}`, { method: 'GET' })
+                    .then(() => cargarVehiculos());
+            }
+        }
+    </script>
     <div th:replace="~{fragments/footer}"></div>
 </body>
 </html>
