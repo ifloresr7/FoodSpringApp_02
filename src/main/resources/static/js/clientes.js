@@ -65,7 +65,7 @@ function createFunctionalityButton() {
         });
     });
 
-    document.querySelector('.createClienteButton').addEventListener('click', function () {
+    document.querySelector('.createButton').addEventListener('click', function () {
         diClienteId.value = "";
         diNombre.value = "";
         diApellidos.value = "";
