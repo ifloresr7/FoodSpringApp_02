@@ -3,8 +3,8 @@
 <head>    
     <meta charset="UTF-8">
     <title th:text="${title}"></title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}" />
-    <script th:src="@{/js/vehiculos.js?v=1.0}" defer></script>
+    <link rel="stylesheet" th:href="@{/css/styles.css(v=${version})}" />
+    <script th:src="@{/js/vehiculos.js(v=${version})}" defer></script>
 </head>
 <body>
     <div th:replace="~{fragments/header}"></div>
