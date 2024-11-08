@@ -43,7 +43,7 @@ public class VehiculoController {
 
     // Eliminar un vehiculo y redirigir a la lista de vehiculos
     @DeleteMapping("/eliminar/{id}")
-    public ResponseEntity<Void> eliminarvehiculo(@PathVariable int id) {
+    public ResponseEntity<Void> eliminarVehiculo(@PathVariable int id) {
         vehiculoService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
