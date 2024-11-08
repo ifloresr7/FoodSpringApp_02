@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>    
     <meta charset="UTF-8">
-    <title th:text="${title}">Gestión de Vehículos</title>
+    <title th:text="${title}"></title>
     <link rel="stylesheet" th:href="@{/css/styles.css}" />
     <script th:src="@{/js/vehiculos.js?v=1.0}" defer></script>
 </head>
@@ -10,8 +10,7 @@
     <div th:replace="~{fragments/header}"></div>
     <main class="content">
         <h1 th:text="${title}">Vehículos</h1>
-        <button class="createVehiculoButton">Añadir Nuevo Vehículo</button>
-        
+        <button class="createButton">Añadir Nuevo Vehículo</button>
         <!-- Tabla de vehículos -->
         <table>
             <thead>

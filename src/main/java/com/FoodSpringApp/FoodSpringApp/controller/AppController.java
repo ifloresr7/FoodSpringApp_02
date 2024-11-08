@@ -19,7 +19,7 @@ public class AppController {
     @Autowired
     private VehiculoService vehiculoService;
 
-    private String version = "2024.11.08.17.05";
+    private String version = "2024.11.08.17.19";
 
     @GetMapping("/")
     public String homePage(Model model) {
@@ -34,7 +34,7 @@ public class AppController {
     public String vehiculosPage(Model model) {
         model.addAttribute("version", this.version);
         model.addAttribute("vehiculos", vehiculoService.obtenerTodosVehiculos());
-        model.addAttribute("title", "Vehículos");
+        model.addAttribute("title", "Gestión de Vehículos");
         model.addAttribute("description", "Aquí puedes ver todos los vehículos.");
         model.addAttribute("currentPage", "vehiculos");
         return "vehiculos";
