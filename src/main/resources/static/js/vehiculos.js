@@ -108,7 +108,7 @@ document.getElementById('vehiculoForm').addEventListener('submit', function(e) {
 // Función para eliminar un vehiculo
 function eliminarVehiculo(id) {
     if (confirm('¿Estás seguro de que deseas eliminar este vehiculo?')) {
-        fetch(`/api/vehiculo/eliminar/${id}`, {
+        fetch(`/api/vehiculos/eliminar/${id}`, {
             method: 'DELETE',
         })
         .then(() => {
