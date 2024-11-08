@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    
+<head>    
     <meta charset="UTF-8">
     <title th:text="${title}">Título por Defecto</title>
     <meta name="description" th:content="${description}" />
     <link rel="stylesheet" th:href="@{/css/styles.css(v=${version})}" />
-
 </head>
 <body>
    
@@ -47,10 +45,6 @@
         </table>
     </main>
 
-
- 
- 
-
     <!-- DialogVehiculo -->
    <dialog id="vehiculoModal">
         <span class="closeButtonModal close">&times;</span>
@@ -66,8 +60,6 @@
             <button class="closeButtonModal">Cerrar</button>
         </form>
     </dialog>
-
-
 
 
     <div th:replace="~{fragments/footer}"></div>

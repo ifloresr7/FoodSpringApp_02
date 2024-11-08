@@ -1,12 +1,16 @@
 package com.FoodSpringApp.FoodSpringApp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.FoodSpringApp.FoodSpringApp.model.Vehiculo;
@@ -19,36 +23,29 @@ public class VehiculoController {
     @Autowired
     private VehiculoService vehiculoService;
      
-    @GetMapping("/nuevo")
-    public String mostrarFormularioCreacion(Model model) {
-        model.addAttribute("vehiculo", new Vehiculo());
-        return "formularioCrearVehiculo";  
+    @GetMapping
+    public ResponseEntity<List<Vehiculo>> obtenerTodosVehiculos() {
+        List<Vehiculo> vehiculos = vehiculoService.obtenerTodosVehiculos();
+        return ResponseEntity.ok(vehiculos);
     }
 
-    @PostMapping("/guardar")
-    public String guardarVehiculo(@ModelAttribute Vehiculo vehiculo) {
-        vehiculoService.save(vehiculo);  
-        return "redirect:/vehiculos";  
-    }
-    
-    @GetMapping("/editar/{id}")
-    public String mostrarFormularioEdicion(@PathVariable int id, Model model) {
-        Vehiculo vehiculo = vehiculoService.findById(id);
-        model.addAttribute("vehiculo", vehiculo);
-        return "formularioEditarVehiculo"; // Nombre de la plantilla Thymeleaf para editar
+    @PostMapping
+    public ResponseEntity<Vehiculo> guardarVehiculo(@RequestBody Vehiculo vehiculo) {
+        Vehiculo nuevoVehiculo = vehiculoService.save(vehiculo);
+        return ResponseEntity.ok(nuevoVehiculo);
     }
 
- 
-    @PostMapping("/actualizar")
-    public String actualizarVehiculo(@ModelAttribute Vehiculo vehiculo) {
-        vehiculoService.save(vehiculo);
-        return "redirect:/vehiculos"; 
+    @PutMapping("/{id}")
+    public ResponseEntity<Vehiculo> actualizarVehiculo(@PathVariable int id, @RequestBody Vehiculo vehiculoData) {
+        Vehiculo vehiculoActualizado = vehiculoService.update(id, vehiculoData);
+        return vehiculoActualizado != null ? ResponseEntity.ok(vehiculoActualizado) : ResponseEntity.notFound().build();
     }
 
-    
-    @GetMapping("/eliminar/{id}")
-    public String eliminarVehiculo(@PathVariable int id) {
+    // Eliminar un vehiculo y redirigir a la lista de vehiculos
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<Void> eliminarvehiculo(@PathVariable int id) {
         vehiculoService.deleteById(id);
-        return "redirect:/vehiculos";  
+        return ResponseEntity.noContent().build();
     }
+    
 }
